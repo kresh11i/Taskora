@@ -158,7 +158,7 @@ const Register = () => {
                 <div className="relative">
                   <User className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-accent w-5 h-5" />
                   <input
-                    type="text"
+                    type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Username"

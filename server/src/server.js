@@ -9,11 +9,11 @@ import taskRoutes from "./routes/taskRoutes.js";
 dotenv.config();
 const app = express();
 let corsOptions = {
-  origin: ["http://localhost:5173","http://192.168.0.246:5173"],
+  origin: [process.env.CLIENT_URL],
   credentials: true,
 }
 
-const port = 3000;
+const port = parseInt(process.env.server_port);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
