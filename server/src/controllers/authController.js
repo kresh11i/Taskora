@@ -69,7 +69,11 @@ export async function loginUser(req, res) {
       maxAge: 3600000, // 1 hour in ms
     });
 
-    return res.status(200).json({ message: "Login successful" });
+    return res.status(200).json({
+      message: "Login successful",
+      name: userData.name   // 👈 add this
+    });
+    
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Server error" });

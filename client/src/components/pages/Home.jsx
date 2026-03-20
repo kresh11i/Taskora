@@ -1,23 +1,4 @@
-// import React from 'react'
-// import { useNavigate } from 'react-router-dom'
 
-// const Home = () => {
-//     const navigate = useNavigate();
-//     const login = ()=>{
-//         navigate("/login")
-//     }
-//     const register = ()=>{
-//         navigate("/register")
-//     }
-//   return (
-//     <div className='flex justify-center gap-2 flex-col w-full'>
-//       <button className='bg-greycolor text-white w-3xs flex justify-center' onClick={login}> Login</button>
-//       <button onClick={register}>Register</button>
-//     </div>
-//   )
-// }
-
-// export default Home;
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
