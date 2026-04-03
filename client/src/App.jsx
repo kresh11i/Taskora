@@ -6,7 +6,7 @@ import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import Dashboard from "./components/pages/Dashboard";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/pages/home";
+import Home from "./components/pages/Home";
 
 
 function App() {
