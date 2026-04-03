@@ -8,13 +8,23 @@ import authRoutes from "./routes/authRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
 dotenv.config();
 const app = express();
-let corsOptions = {
-  origin: process.env.FRONTEND_URL,
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigin = process.env.FRONTEND_URL;
+
+    if (!origin || origin === allowedOrigin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
-}
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
   
 const port = parseInt(process.env.PORT || 3000);
-app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(cookieParser());
 app.get("/", (req, res) => {
