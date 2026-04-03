@@ -8,16 +8,11 @@ import authRoutes from "./routes/authRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
 dotenv.config();
 const app = express();
-const corsOptions = {
-  origin: function (origin, callback) {
-    const allowedOrigin = process.env.FRONTEND_URL;
-
-    if (!origin || origin === allowedOrigin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+let corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    "https://taskora-pi.vercel.app",  // 👈 add your actual frontend URL
+  ],
   credentials: true,
 };
 app.use(cors(corsOptions));
