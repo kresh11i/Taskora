@@ -12,7 +12,7 @@ let corsOptions = {
   origin: [process.env.CLIENT_URL],
   credentials: true,
 }
-
+  
 const port = parseInt(process.env.server_port);
 app.use(cors(corsOptions));
 app.use(express.json());

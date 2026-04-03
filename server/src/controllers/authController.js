@@ -11,7 +11,7 @@ export async function registerUser(req, res) {
 
   try {
     const userExists = await pool.query(
-      "SELECT * FROM taskUsers WHERE email = $1",
+      "SELECT * FROM users WHERE email = $1",
       [email]
     );
 
@@ -22,7 +22,7 @@ export async function registerUser(req, res) {
     const hashedPass = await bcrypt.hash(password, 10);
 
     await pool.query(
-      "INSERT INTO taskUsers (name, email, password) VALUES ($1, $2, $3)",
+      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
       [name, email, hashedPass]
     );
 
@@ -42,7 +42,7 @@ export async function loginUser(req, res) {
 
   try {
     const user = await pool.query(
-      "SELECT * FROM taskUsers WHERE email = $1",
+      "SELECT * FROM users WHERE email = $1",
       [email]
     );
 
