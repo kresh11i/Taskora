@@ -9,7 +9,7 @@ import taskRoutes from "./routes/taskRoutes.js";
 dotenv.config();
 const app = express();
 let corsOptions = {
-  origin: [process.env.frontendURL],
+  origin: process.env.FRONTEND_URL,
   credentials: true,
 }
   
