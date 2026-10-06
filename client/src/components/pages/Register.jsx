@@ -11,6 +11,7 @@ const Register = () => {
   const [password, setpassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [toast, setToast] = useState(null); // { message, type }
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const showToast = (message, type) => {
@@ -19,6 +20,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       await api.post("/api/auth/register", { name, email, password });
       showToast("Account created! Redirecting to login...", "success");
@@ -27,6 +29,8 @@ const Register = () => {
       const message =
         err?.response?.data?.message || "Something went wrong. Try again.";
       showToast(message, "error");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -139,9 +143,14 @@ const Register = () => {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full bg-brand-accent hover:brightness-110 text-black font-black py-4 rounded-full transition-all transform active:scale-[0.98] text-lg shadow-lg shadow-brand-accent/20 mt-4"
+                disabled={isLoading}
+                className="w-full bg-brand-accent hover:brightness-110 text-black font-black py-4 rounded-full transition-all transform active:scale-[0.98] text-lg shadow-lg shadow-brand-accent/20 mt-4 flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                register
+                {isLoading ? (
+                  <span className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
+                ) : (
+                  "Register"
+                )}
               </button>
 
               {/* Login Link */}

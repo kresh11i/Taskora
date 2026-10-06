@@ -13,8 +13,18 @@ const Login = () => {
   
   const [showPassword, setShowPassword] = useState(false);
   const [toast, setToast] = useState(null); // { message, type }
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("expired")) {
+      setToast({ message: "Session expired. Please log in again.", type: "error" });
+      // Clean up the URL
+      window.history.replaceState({}, document.title, "/login");
+    }
+  }, []);
 
   const showToast = (message, type) => {
     setToast({ message, type });
@@ -22,6 +32,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await api.post("/api/auth/login", { email, password });
       console.log(response.data);
@@ -32,6 +43,8 @@ const Login = () => {
       const message =
         err?.response?.data?.message || "Something went wrong. Try again.";
       showToast(message, "error");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -123,9 +136,14 @@ const Login = () => {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full bg-brand-accent hover:brightness-110 text-black font-black py-4 rounded-full transition-all transform active:scale-[0.98] text-lg shadow-lg shadow-brand-accent/20"
+                disabled={isLoading}
+                className="w-full bg-brand-accent hover:brightness-110 text-black font-black py-4 rounded-full transition-all transform active:scale-[0.98] text-lg shadow-lg shadow-brand-accent/20 flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Log in!
+                {isLoading ? (
+                  <span className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
+                ) : (
+                  "Log in!"
+                )}
               </button>
 
               {/* Register Link */}

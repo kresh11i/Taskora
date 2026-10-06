@@ -11,8 +11,10 @@ const app = express();
 let corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://taskora-pi.vercel.app",  // 👈 add your actual frontend URL
-  ],
+    "http://localhost:5174",
+    "https://taskora-pi.vercel.app",
+    process.env.CLIENT_URL
+  ].filter(Boolean),
   credentials: true,
 };
 app.use(cors(corsOptions));
