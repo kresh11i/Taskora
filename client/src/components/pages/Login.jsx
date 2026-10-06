@@ -49,7 +49,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-brand-dark bg-mesh flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen w-full bg-black flex items-center justify-center p-4 relative font-sans">
       {/* Toast */}
       {toast && (
         <Toast
@@ -59,74 +59,64 @@ const Login = () => {
         />
       )}
 
-      {/* Mobile Wave Header */}
-      <div className="lg:hidden absolute top-0 left-0 w-full h-[320px] bg-wave-header z-0" />
-
       <div className="w-full max-w-6xl z-10 grid lg:grid-cols-2 gap-12 items-center">
         {/* Left: Desktop Branding */}
         <div className="hidden lg:flex flex-col justify-center space-y-4 p-8">
-          <h1 className="text-6xl xl:text-7xl font-extrabold text-white tracking-tighter whitespace-nowrap">
-            Welcome <span className="text-brand-accent">Back!</span>
+          <h1 className="text-6xl xl:text-7xl font-semibold text-white tracking-tight whitespace-nowrap">
+            Welcome <span className="text-neutral-500">Back.</span>
           </h1>
-          <p className="text-xl text-gray-400 font-light flex justify-center">
-            Log in to Access your{" "}
-            <span className="text-brand-accent ml-1">Tasks!</span>
+          <p className="text-xl text-neutral-400 font-light">
+            Log in to access your tasks.
           </p>
         </div>
 
         {/* Right: Login Form */}
         <div className="w-full max-w-md mx-auto z-10">
-          <div className="bg-black/40 backdrop-blur-2xl border border-brand-accent/20 rounded-[40px] p-10 lg:p-14 shadow-2xl">
+          <div className="bg-[#0a0a0a] border border-neutral-800 rounded-3xl p-10 lg:p-14">
             <div className="text-left mb-10">
-              <h2 className="text-5xl font-extrabold text-white mb-3 lg:hidden tracking-tight">
-                Welcome!
+              <h2 className="text-4xl font-semibold text-white mb-3 lg:hidden tracking-tight">
+                Welcome.
               </h2>
-              <p className="text-gray-300 text-base lg:hidden font-light max-w-xs">
-                Log into your Account to Access your Tasks
+              <p className="text-neutral-400 text-base lg:hidden font-light max-w-xs">
+                Log into your account to access your tasks.
               </p>
-              <h2 className="text-2xl font-black text-white hidden lg:block text-center uppercase tracking-[0.2em] opacity-80">
+              <h2 className="text-sm font-semibold text-neutral-500 hidden lg:block uppercase tracking-widest mb-2">
                 Log In
               </h2>
             </div>
 
-            <form onSubmit={handleLogin} className="space-y-6">
+            <form onSubmit={handleLogin} className="space-y-5">
               {/* Email */}
               <div className="space-y-1">
-                <label className="text-gray-400 text-xs font-semibold ml-4 uppercase hidden lg:block">
-                  Email Address
-                </label>
                 <div className="relative">
-                  <User className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-accent w-5 h-5" />
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500 w-5 h-5" />
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
+                    placeholder="Email Address"
                     required
-                    className="w-full bg-brand-surface border border-brand-accent/30 rounded-full py-4 pl-14 pr-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent/50 transition-all"
+                    className="w-full bg-transparent border border-neutral-800 rounded-xl py-4 pl-12 pr-4 text-white placeholder:text-neutral-600 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
               </div>
 
               {/* Password */}
               <div className="space-y-1">
-                <label className="text-gray-400 text-xs font-semibold ml-4 uppercase hidden lg:block">
-                  Password
-                </label>
                 <div className="relative">
-                  <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-accent w-5 h-5" />
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500 w-5 h-5" />
                   <input
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     required
-                    className="w-full bg-brand-surface border border-brand-accent/30 rounded-full py-4 pl-14 pr-14 text-white placeholder:text-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent/50 transition-all"
+                    className="w-full bg-transparent border border-neutral-800 rounded-xl py-4 pl-12 pr-12 text-white placeholder:text-neutral-600 focus:outline-none focus:border-white transition-colors"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-brand-accent transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white transition-colors"
                   >
                     <EyeOff className="w-5 h-5" />
                   </button>
@@ -137,12 +127,12 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-brand-accent hover:brightness-110 text-black font-black py-4 rounded-full transition-all transform active:scale-[0.98] text-lg shadow-lg shadow-brand-accent/20 flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-white text-black font-semibold py-4 rounded-xl transition-all active:scale-[0.98] mt-4 flex justify-center items-center hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
-                  <span className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
+                  <span className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
                 ) : (
-                  "Log in!"
+                  "Log In"
                 )}
               </button>
 
@@ -150,21 +140,18 @@ const Login = () => {
               <div className="text-center pt-2">
                 <Link
                   to="/register"
-                  className="block w-full border border-brand-accent/10 py-3 rounded-full text-sm text-gray-400 hover:text-white hover:border-brand-accent/40 transition-all"
+                  className="block w-full border border-neutral-800 py-3 rounded-xl text-sm text-neutral-400 hover:text-white hover:border-neutral-600 transition-colors"
                 >
-                  Don't have an account?{" "}
-                  <span className="text-brand-accent font-bold">
-                    Register Now
-                  </span>
+                  Don't have an account? <span className="font-semibold text-white">Register</span>
                 </Link>
               </div>
             </form>
 
             {/* Copyright */}
-            <div className="mt-12 flex flex-col items-center space-y-2 opacity-40 hover:opacity-100 transition-opacity">
-              <div className="flex items-center space-x-2 text-[10px] text-white uppercase tracking-widest">
+            <div className="mt-12 flex justify-center">
+              <div className="flex items-center space-x-2 text-[10px] text-neutral-600 uppercase tracking-widest">
                 <Copyright className="w-3 h-3" />
-                <span>Taskora All Rights Reserved 2025</span>
+                <span>Taskora {new Date().getFullYear()}</span>
               </div>
             </div>
           </div>
